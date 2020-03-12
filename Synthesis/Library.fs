@@ -1,29 +1,33 @@
 ﻿module Synthesis
 
 let abelar input =
-    match input>12 && input<3097 && input%12=0 with
-    | true -> true
-    | _ -> false
+    input>12 && input<3097 && input%12=0 
+
     
 
 let area b h =
-    match h<0.0 with
+    match h<0.0 && b<0.0 with
     | true -> failwith "height cannot be a negative number"
-    | _ -> match b<0.0 with
-           | true -> failwith "base cannot be a negative number"
-           | _ -> 0.5*b*h
+    | _ -> 0.5*b*h
 
-let zollo _ =
-    failwith "Not implemented"
+let zollo input =
+    match input<0 with
+    | true -> -1*input
+    | _ -> input*2
 
-let min _ _ =
-    failwith "Not implemented"
+let min a b =
+    match a>b with
+    | true -> b
+    | _ -> a
 
-let max _ _ =
-    failwith "Not implemented"
+let max a b =
+    match a>b with
+    | true -> a
+    | _ -> b
 
-let ofTime _ _ _ =
-    failwith "Not implemented"
+
+let ofTime h m s =
+    (h*3600)+(m*60)+s
 
 let toTime _ =
     failwith "Not implemented"
