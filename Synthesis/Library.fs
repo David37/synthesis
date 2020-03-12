@@ -45,8 +45,10 @@ let digits n =
     getDigits  n 1
 
 
-let minmax _ =
-   failwith "not inmplemented"
+let minmax n =
+   let a,b,c,d=n
+   (min (min c d) (min a b), max (max c d) (max a b))
+   
 
 let isLeap y =
     match y<1582 with 
@@ -59,8 +61,21 @@ let isLeap y =
                     | false -> true
             | false -> false
 
-let month _ =
-    failwith "Not implemented"
+let month = function 
+    | 1 -> "January",31
+    | 2 -> "February",28
+    | 3 -> "March",31
+    | 4 -> "April",30
+    | 5 -> "May",31
+    | 6 -> "June",30
+    | 7 -> "July",31
+    | 8 -> "August",31
+    | 9 -> "September",30
+    | 10 -> "October",31
+    | 11 -> "November",30
+    | 12 -> "December",31
+    | _ -> failwith "Enter a number between 1 & 12 inclusive"
+
 
 let toBinary _ =
     failwith "Not implemented"
