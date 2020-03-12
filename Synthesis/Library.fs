@@ -1,10 +1,17 @@
 ﻿module Synthesis
 
-let abelar _ =
-    failwith "Not implemented"
+let abelar input =
+    match input>12 && input<3097 && input%12=0 with
+    | true -> true
+    | _ -> false
+    
 
-let area _ _ =
-    failwith "Not implemented"
+let area b h =
+    match h<0.0 with
+    | true -> failwith "height cannot be a negative number"
+    | _ -> match b<0.0 with
+           | true -> failwith "base cannot be a negative number"
+           | _ -> 0.5*b*h
 
 let zollo _ =
     failwith "Not implemented"
