@@ -6,9 +6,9 @@ let abelar input =
     
 
 let area b h =
-    match h<0.0 && b<0.0 with
+    match (h<0.0 || b<0.0) with
     | true -> failwith "height cannot be a negative number"
-    | _ -> 0.5*b*h
+    | false -> 0.5*b*h
 
 let zollo input =
     match input<0 with
@@ -29,22 +29,35 @@ let max a b =
 let ofTime h m s =
     (h*3600)+(m*60)+s
 
-let toTime _ =
-    failwith "Not implemented"
+let toTime s =
+    match s<0 with
+    | true -> (0,0,0)
+    | _ -> let h= s/3600
+           let m= s%3600/60
+           let s= s%3600%60
+           (h,m,s)
 
 let digits n =
-    let rec inner count numDigits=
-        match n=0 with
-        | true -> 0+numDigits
-        | false -> inner (n/10) (numDigits+1)
-    inner n 0
+    let rec getDigits count numDigits=
+        match (count < 10 && count > -10) with
+        | true -> numDigits
+        | false -> getDigits (count/10) (numDigits+1)
+    getDigits  n 1
 
 
 let minmax _ =
-    failwith "Not implemented"
+   failwith "not inmplemented"
 
-let isLeap _ =
-    failwith "Not implemented"
+let isLeap y =
+    match y<1582 with 
+    | true -> failwith "Year cannot be less than 1852"
+    | false -> match y%4=0 with
+            | true -> match y%100=0 with 
+                    | true -> match y%400=0 with 
+                            | true -> true
+                            | false -> false
+                    | false -> true
+            | false -> false
 
 let month _ =
     failwith "Not implemented"
