@@ -32,8 +32,13 @@ let ofTime h m s =
 let toTime _ =
     failwith "Not implemented"
 
-let digits _ =
-    failwith "Not implemented"
+let digits n =
+    let rec inner count numDigits=
+        match n=0 with
+        | true -> 0+numDigits
+        | false -> inner (n/10) (numDigits+1)
+    inner n 0
+
 
 let minmax _ =
     failwith "Not implemented"
