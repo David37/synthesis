@@ -77,8 +77,17 @@ let month = function
     | _ -> failwith "Enter a number between 1 & 12 inclusive"
 
 
-let toBinary _ =
-    failwith "Not implemented"
+let toBinary num =
+    match num<0 with
+    | true -> failwith "Cannot be a negative number"
+    | false ->  let rec convert n storage=
+                    match n=0 with
+                    | true -> match storage with
+                                | "" -> "0"
+                                | _ -> storage
+                    | false -> convert (n/2) (string (n%2)+storage) 
+                convert num ""
+
 
 let bizFuzz _ =
     failwith "Not implemented"
