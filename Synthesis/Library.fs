@@ -117,7 +117,21 @@ let monthDay d y =
                 getMonth d 1
     | false -> failwith "Days have to be between 0-365"     
 
+let coord (initialX, initialY) =
+    let sqrt n =
+        let rec calculate guess i =
+            match i with
+            | 10 -> guess
+            | _ ->
+                let g = (guess + n / guess) / 2.0
+                calculate g (i + 1)
+        match n <= 0.0 with
+        | true -> failwith "Impossible"
+        | _ -> calculate (n / 2.0) 0
 
-
-
-let coord _ = failwith "Not implemented"
+    let result =
+        (fun (x, y) -> sqrt ((initialX - x) * (initialX - x) + (initialY - y) * (initialY - y))),
+        (fun (x, y) ->
+            let ans width height = initialX <= x + width && initialY >= y - height && initialX >= x && initialY <= y
+            ans)
+    result
